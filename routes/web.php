@@ -19,6 +19,8 @@ Route::get('/dashboard', function () {
 });
 
 Auth::routes();
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
