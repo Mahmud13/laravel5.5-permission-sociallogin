@@ -29,7 +29,7 @@
                 <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" class="img-circle" alt="User Image">
 
                 <p>
-                   {{ Auth::user()->name }} 
+                   {{ Auth::user()->name }}
                    <small>{{ Auth::user()->email }}</small>
                    <small>Member since {{ Auth::user()->created_at->format('F Y') }}</small>
                 </p>
@@ -37,7 +37,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('users.profile', ['id' => Auth::user()->id])}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -99,4 +99,38 @@ class UserController extends Controller
             $user->assignRole($role);
         }
     }
+    public function profileShow($id)
+    {
+        $user = User::find($id);
+        return view('users.profile-show', ['user' => $user]);
+    }
+    public function profileEdit($id)
+    {
+        $user = User::find($id);
+        $countries = [
+            ['id' => 1, 'name' => 'Bangladesh'],
+            ['id' => 2, 'name' => 'India']
+        ];
+        $time_zones = [
+            ['id' => 1, 'name' => '+6:00'],
+            ['id' => 2, 'name' => '+5:30']
+        ];
+        $occupations = [
+            ['id' => 1, 'name' => 'Engineer'],
+            ['id' => 2, 'name' => 'Doctor']
+        ];
+        return view('users.profile-edit', [
+            'user' => $user,
+            'countries' => $countries,
+            'time_zones' => $time_zones,
+            'occupations' => $occupations
+        ]);
+    }
+    public function getPhoto($id)
+    {
+        $user = User::find($id);
+        if(!empty($user->photo)){
+            return \Image::make(\Storage::get($user->photo))->response();
+        }
+    }
 }

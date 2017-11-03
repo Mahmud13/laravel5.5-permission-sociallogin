@@ -22,6 +22,10 @@ Auth::routes();
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
+Route::get('users/profile/{id}', 'UserController@profileShow')->name('users.profile');
+Route::get('users/profile/edit/{id}', 'UserController@profileEdit')->name('users.profileEdit');
+Route::patch('users/profile/edit/{id}', 'UserController@profileUpdate')->name('users.profileUpdate');
+Route::get('users/{id}', 'UserController@getPhoto')->name('users.getPhoto');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'permissions', 'middleware' => ['auth']], function () {
